@@ -18,12 +18,8 @@ export const Navbar=()=>{
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Jobs
           </Typography>
-          <Button color="inherit"><Link to="/register">Register</Link> 
-        </Button>
-        <Button color="inherit"><Link to="/login">Login</Link> 
-        </Button>
         </Toolbar>
       </AppBar>
     </Box>

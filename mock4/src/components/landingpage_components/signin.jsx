@@ -6,12 +6,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { margin } from "@mui/system";
 import { Navbar } from "./navbar";
-
+import Cookies from 'universal-cookie';
 export const Signin = ()=>{
     let [name,setname]= useState("")
     let [email,setemail]= useState("")
     let [password,setpassword]= useState("")
-    
+    const cookies = new Cookies();
     let navigate = useNavigate()
     const register=()=>{
         let data ={
@@ -19,7 +19,7 @@ export const Signin = ()=>{
             email,
             password
         }
-        fetch(`http://localhost:8080/api/login`,{
+        fetch(` http://localhost:8080/api/login`,{
             method: "POST",
             body: JSON.stringify(data),
             headers:{
@@ -27,7 +27,9 @@ export const Signin = ()=>{
             }
         }).then((res )=> res.json())
         .then((res)=> {
-            let domain= (res.data.user.email)
+          cookies.set('token',`${res.token}`)
+        console.log(cookies.get('token'));
+            let domain= (res.data.email)
             console.log(domain)
             domain = domain.split("@")
             console.log(domain)
@@ -37,6 +39,7 @@ export const Signin = ()=>{
             else{
                 navigate("/userpage")
             }
+          
         })
         
         .catch((err) => console.log("error", err))
@@ -58,37 +61,21 @@ export const Signin = ()=>{
       
         
         <TextField
-        style={{display : "block",margin:"20px"}}
-          required
-          id="filled-required"
-          label="Required"
-          defaultValue="Enter your name"
-          variant="filled"
+        
           onChange={(e)=>{
             setname(e.target.value)
           }}
         />
         <TextField
-        style={{display : "block",margin:"20px"}}
-          required
-          id="filled-required"
-          label="Required"
-          defaultValue="Enter your email"
-          variant="filled"
-          onChange={(e)=>{
-            setemail(e.target.value)
-          }}
+        
+        onChange={(e)=>{
+          setemail(e.target.value)
+        }}
         />
         <TextField
-        style={{display : "block",margin:"20px"}}
-          id="filled-required"
-          label="Required"
-          defaultValue="Password"
-          
-          variant="filled"
-          onChange={(e)=>{
-            setpassword(e.target.value)
-          }}
+        onChange={(e)=>{
+          setpassword(e.target.value)
+        }}
         />
        <Button variant="contained" onClick={register} style={{display : "block",margin:"auto"}}  >Submit</Button>
       

@@ -9,20 +9,19 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'universal-cookie';
 export  function Userjoblisting() {
     let [data,setdata]= useState([])
  let navigate = useNavigate()
+ const cookies = new Cookies();
     useEffect(()=> {
-    let email = "muskan@masaischool"
-    //123456
-    let password = "123456"
-    let data1 ={
-        email,
-        password
-    }
-    if(data1){
-        fetch(`http://localhost:8080/api/job`)
+    let token = cookies.get('token')
+    if(token){
+        fetch(` http://localhost:8080/api/job`,{
+          headers: {
+            Authorization: `${token}`
+          }
+        })
         .then((res)=> res.json())
         .then((res)=>{console.log(res.data)
         setdata(res.data)
