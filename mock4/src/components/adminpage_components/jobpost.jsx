@@ -10,22 +10,28 @@ import { Navbar } from "./navbar";
 import { useState } from "react";
 export default function Jobpost() {
   let [data,setdata]= useState({
+    category:"Job",
+
     companyname : "",
     
-    position:"",
+    role:"",
     
-    contact:"",
-    
-    
+  
     location:""
 
   })
   const handlesubmit = ()=>{
-    
+    console.log(data)
     try {
-      fetch(`http://localhost:8080/api/postjob`)
+      fetch(`http://localhost:8080/api/postjob`,{
+        method: "POST",
+        body: JSON.stringify(data),
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
     } catch (error) {
-      
+      console.log(error)
     }
   }
 
@@ -40,7 +46,10 @@ export default function Jobpost() {
           type="text"
           label="Category"
           variant="outlined"
-          onChange={(e)=> setdata({companyname:(e.target.value)})
+          value={data.category}
+          onChange={(e)=> {setdata({...data,category: e.target.value })
+                               console.log(data)
+        }
           }
         />
         <br />
@@ -49,6 +58,8 @@ export default function Jobpost() {
           type="text"
           label="Company-name"
           variant="outlined"
+          value={data.companyname}
+          onChange={(e)=> setdata({...data,companyname: e.target.value})}
         />
         <br />
         <TextField
@@ -56,6 +67,8 @@ export default function Jobpost() {
           type="text"
           label="Role"
           variant="outlined"
+          value={data.role}
+          onChange={(e)=> setdata({...data,role: e.target.value })}
         />
         <br />
         <TextField
@@ -63,6 +76,8 @@ export default function Jobpost() {
           type="text"
           label="Job region"
           variant="outlined"
+          value={data.location}
+          onChange={(e)=> setdata({...data,location: e.target.value})}
         />
         <br />
         <Button variant="contained" color="primary"  onClick={handlesubmit}  >
