@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Box from '@mui/material/Box';
+import {Box, CardHeader, Input, OutlinedInput, TextField} from '@mui/material';
 import { Button, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "./navbar";
@@ -34,26 +34,36 @@ export const Signup = ()=>{
     return(
         <>
         <Navbar/>
-        <Paper elevation={3} style={{width:"fit-content" , height: " 50%", margin:"auto",textAlign:"center"}}>
-    <h1>Sign up</h1>
-    <Box
-      
+        <Paper  elevation={3} style={{width:"fit-content" , height: " 50%", margin:"auto",textAlign:"center",marginTop:"20vh"}}>
+    <CardHeader title="Sign up"></CardHeader>
+    <form style={{ margin:"auto" }}
     >
      
         
-     <input
-        
+     <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="text"
+          label="Name"
+          variant="outlined"
         onChange={(e)=>{
           setname(e.target.value)
         }}
       />
-      <input
+      <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="text"
+          label="Email"
+          variant="outlined"
       
       onChange={(e)=>{
         setemail(e.target.value)
       }}
       />
-      <input
+      <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="text"
+          label="Password"
+          variant="outlined"
       
       onChange={(e)=>{
         setpassword(e.target.value)
@@ -61,7 +71,7 @@ export const Signup = ()=>{
       />
        <Button variant="contained" onClick={register} style={{display : "block",margin:"auto"}} >Submit</Button>
       
-    </Box>
+    </form>
     </Paper>
         </>
   );

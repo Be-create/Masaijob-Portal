@@ -18,11 +18,11 @@ export const Navbar=()=>{
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Jobpost
           </Typography>
-          <Button color="inherit"><Link to="/register">Register</Link> 
+          <Button variant="contained" sx={{margin:"10px"}} color="primary"><Link style={{ textDecoration:"none",color:"white"}} to="/register">Register</Link> 
         </Button>
-        <Button color="inherit"><Link to="/login">Login</Link> 
+        <Button variant="contained" sx={{margin:"10px"}} color="primary"><Link style={{ textDecoration:"none",color:"white"}}  to="/login">Login</Link> 
         </Button>
         </Toolbar>
       </AppBar>

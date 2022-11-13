@@ -48,43 +48,47 @@ export const Signin = ()=>{
     return(
         <>
         <Navbar/>
-        <Paper elevation={3} style={{width:"fit-content" , height: " 50%", margin:"auto",textAlign:"center"}}>
-            <h1>Sign in</h1>
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
+        <Paper elevation={3} style={{width:"fit-content" , height: " 50%", margin:"auto",textAlign:"center",marginTop:"20vh"}}>
+        <CardHeader title="Sign up"></CardHeader>
+    <form style={{ margin:"auto" }}
     >
       
         
         <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="text"
+          label="Email"
+          variant="outlined"
         
           onChange={(e)=>{
             setname(e.target.value)
           }}
         />
         <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="text"
+          label="Email"
+          variant="outlined"
         
         onChange={(e)=>{
           setemail(e.target.value)
         }}
         />
         <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="text"
+          label="Password"
+          variant="outlined"
         onChange={(e)=>{
           setpassword(e.target.value)
         }}
         />
        <Button variant="contained" onClick={register} style={{display : "block",margin:"auto"}}  >Submit</Button>
       
-    </Box>
+    </form>
     </Paper>
         </>
   );
 }
 
-       //muskan
-       //muskan@masaischool
-       //123456
+       
