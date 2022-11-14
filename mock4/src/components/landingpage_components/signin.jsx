@@ -49,7 +49,7 @@ export const Signin = ()=>{
         <>
         <Navbar/>
         <Paper elevation={3} style={{width:"fit-content" , height: " 50%", margin:"auto",textAlign:"center",marginTop:"20vh"}}>
-        <CardHeader title="Sign up"></CardHeader>
+        <CardHeader title="Sign in"></CardHeader>
     <form style={{ margin:"auto" }}
     >
       

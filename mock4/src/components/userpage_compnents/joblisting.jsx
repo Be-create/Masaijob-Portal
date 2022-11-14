@@ -34,12 +34,12 @@ export  function Userjoblisting() {
     }
 },[])
   return data === [] ? <h1>Loading</h1> :(
-    <div>
-        <Grid container spacing={2}>
+    <div style={{ padding:"30px"}}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
             data.map((ele)=>
-            <Grid item xs={8}>
-    <Card key={ele._id} sx={{ maxWidth: 345 }}>
+            <Grid key={ele._id} item xs={4} sm={4} md={4} >
+    <Card >
       <CardMedia
         component="img"
         height="50"

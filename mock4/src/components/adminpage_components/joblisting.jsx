@@ -36,10 +36,10 @@ export  function Adminjoblisting() {
 },[])
   return data === [] ? <h1>Loading</h1> :(
     <div>
-        <Grid container spacing={2}>
+        <Grid container columns="auto" spacing={2}>
         {
             data.map((ele)=>
-            <Grid item xs={8}>
+            <Grid>
     <Card key={ele._id} sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
