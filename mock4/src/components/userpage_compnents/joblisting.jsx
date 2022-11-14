@@ -7,11 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 export  function Userjoblisting() {
     let [data,setdata]= useState([])
+    let [page,setpage]=useState(1)
+    let [showdata,setshowdata]=useState([])
+    let count=10
  let navigate = useNavigate()
  const cookies = new Cookies();
     useEffect(()=> {
@@ -25,6 +28,9 @@ export  function Userjoblisting() {
         .then((res)=> res.json())
         .then((res)=>{console.log(res.data)
         setdata(res.data)
+        let temp = data.slice(0,20)
+        setshowdata(temp)
+          console.log(temp)
         })
         .catch((err)=> console.log(err))
     
@@ -33,11 +39,19 @@ export  function Userjoblisting() {
       navigate("/register")
     }
 },[])
-  return data === [] ? <h1>Loading</h1> :(
+useEffect(()=>{
+  let start = page*20
+  let end = start+20
+  let temp1 = data.slice(start,end)
+        setshowdata(temp1)
+          console.log(temp1)
+},[page])
+
+  return showdata === [] ? <h1>Loading</h1> :(
     <div style={{ padding:"30px"}}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
-            data.map((ele)=>
+           showdata.map((ele)=>
             <Grid key={ele._id} item xs={4} sm={4} md={4} >
     <Card >
       <CardMedia
@@ -72,6 +86,10 @@ export  function Userjoblisting() {
             )
         }
         </Grid>
+
+        <Pagination count={10} defaultPage={1} onChange={(e,page)=>{
+        setpage(page)
+    }}></Pagination>
     </div>
   );
 }

@@ -84,6 +84,7 @@ export default function Jobpost() {
           Post
         </Button>
       </form>
+      
     </div>
   );
 }
