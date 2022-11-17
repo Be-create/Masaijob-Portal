@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import Filter from './Filter';
+
 export  function Adminjoblisting() {
     let [data,setdata]= useState([])
     let [page,setpage]=useState(1)
@@ -48,8 +50,9 @@ useEffect(()=>{
 },[page])
 
   return showdata[0] == undefined ? <h1>Loading...</h1> :(
-    <div style={{ padding:"30px"}}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+    <div style={{ padding:"30px", display:"flex"}}>
+     <Filter/>
+        <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
            showdata.map((ele)=>
             <Grid key={ele._id} item xs={4} sm={4} md={4} >
@@ -89,7 +92,7 @@ useEffect(()=>{
 
         <Pagination count={10} defaultPage={1} onChange={(e,page)=>{
         setpage(page)
-    }}></Pagination>
+    }}></Pagination></div>
     </div>
   );
 }

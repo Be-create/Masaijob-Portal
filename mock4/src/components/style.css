@@ -11,3 +11,14 @@
     position:sticky;
 
 }
+.Joblist{
+    background-image: url("./assets/joblist.jpg");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+   
+    height: 30vh;
+    margin: 3%;
+    color: blue;
+    text-decoration: none;
+}
