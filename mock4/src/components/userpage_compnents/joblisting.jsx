@@ -7,9 +7,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Grid, Pagination } from '@mui/material';
+import { Box, Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import Filter from '../adminpage_components/Filter';
+import CircularProgress from '@mui/material/CircularProgress';
 export  function Userjoblisting() {
     let [data,setdata]= useState([])
     let [page,setpage]=useState(1)
@@ -47,9 +49,12 @@ useEffect(()=>{
           console.log(temp1)
 },[page])
 
-  return showdata[0] === null ? <h1>Loading</h1> : 
-    <div style={{ padding:"30px"}}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+  return showdata[0] == undefined ?  <Box sx={{ display: 'flex',width:"100vw" }}>
+  <CircularProgress sx={{ margin:"auto"}} />
+</Box>:(
+    <div style={{ padding:"30px", display:"flex"}}>
+     <Filter/>
+        <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
            showdata.map((ele)=>
             <Grid key={ele._id} item xs={4} sm={4} md={4} >
@@ -76,8 +81,10 @@ useEffect(()=>{
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <Button variant="contained" sx={{margin:"10px"}} color="primary">Apply
+        </Button>
+        <Button variant="contained" sx={{margin:"10px"}} color="primary">Bookmark
+        </Button>
       </CardActions>
     </Card>
   </Grid>
@@ -89,7 +96,7 @@ useEffect(()=>{
 
         <Pagination count={10} defaultPage={1} onChange={(e,page)=>{
         setpage(page)
-    }}></Pagination>
+    }}></Pagination></div>
     </div>
-  
+  );
 }

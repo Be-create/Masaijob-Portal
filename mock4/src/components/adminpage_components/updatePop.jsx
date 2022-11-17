@@ -2,6 +2,7 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Updateform from './updateform';
 
 export default function BasicPopover() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,7 +33,7 @@ export default function BasicPopover() {
           horizontal: 'left',
         }}
       >
-        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        <Typography sx={{ p: 2 }}><Updateform/></Typography>
       </Popover>
     </div>
   );
