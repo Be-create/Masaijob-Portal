@@ -8,18 +8,22 @@ import { margin } from "@mui/system";
 import { Navbar } from "./navbar";
 import Cookies from 'universal-cookie';
 export const Signin = ()=>{
+ 
     let [name,setname]= useState("")
     let [email,setemail]= useState("")
     let [password,setpassword]= useState("")
     const cookies = new Cookies();
+    cookies.remove("token")
     let navigate = useNavigate()
     const register=()=>{
+      
         let data ={
             name,
             email,
             password
         }
-        fetch(` http://localhost:8080/api/login`,{
+        try {
+          fetch(` http://localhost:8080/api/login`,{
             method: "POST",
             body: JSON.stringify(data),
             headers:{
@@ -42,7 +46,10 @@ export const Signin = ()=>{
           
         })
         
-        .catch((err) => console.log("error", err))
+        } catch (error) {
+          console.log(error)
+        }
+        
     }
 
     return(
@@ -57,7 +64,7 @@ export const Signin = ()=>{
         <TextField
           style={{ width: "50%", margin: "5px" }}
           type="text"
-          label="Email"
+          label="Name"
           variant="outlined"
         
           onChange={(e)=>{

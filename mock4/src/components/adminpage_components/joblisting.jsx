@@ -7,25 +7,30 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'universal-cookie';
 export  function Adminjoblisting() {
     let [data,setdata]= useState([])
+    let [page,setpage]=useState(1)
+    let [showdata,setshowdata]=useState([])
+    let count=10
  let navigate = useNavigate()
+ const cookies = new Cookies();
     useEffect(()=> {
-    let email = "muskan@masaischool"
-    //123456
-    let password = "123456"
-    let data1 ={
-        email,
-        password
-    }
-    if(data1){
-        fetch(`http://localhost:8080/api/job`)
+    let token = cookies.get('token')
+    if(token){
+        fetch(` http://localhost:8080/api/job`,{
+          headers: {
+            Authorization: `${token}`
+          }
+        })
         .then((res)=> res.json())
         .then((res)=>{console.log(res.data)
         setdata(res.data)
+        let temp = (res.data).slice(0,20)
+        setshowdata(temp)
+          console.log(temp)
         })
         .catch((err)=> console.log(err))
     
@@ -34,13 +39,21 @@ export  function Adminjoblisting() {
       navigate("/register")
     }
 },[])
-  return data === [] ? <h1>Loading</h1> :(
-    <div>
-        <Grid container columns="auto" spacing={2}>
+useEffect(()=>{
+  let start = page*20
+  let end = start+20
+  let temp1 = data.slice(start,end)
+        setshowdata(temp1)
+          console.log(temp1)
+},[page])
+
+  return showdata[0] == undefined ? <h1>Loading...</h1> :(
+    <div style={{ padding:"30px"}}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
-            data.map((ele)=>
-            <Grid>
-    <Card key={ele._id} sx={{ maxWidth: 345 }}>
+           showdata.map((ele)=>
+            <Grid key={ele._id} item xs={4} sm={4} md={4} >
+    <Card >
       <CardMedia
         component="img"
         height="50"
@@ -73,6 +86,10 @@ export  function Adminjoblisting() {
             )
         }
         </Grid>
+
+        <Pagination count={10} defaultPage={1} onChange={(e,page)=>{
+        setpage(page)
+    }}></Pagination>
     </div>
   );
 }

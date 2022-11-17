@@ -8,6 +8,7 @@ import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import { Navbar } from "./navbar";
 import { useState } from "react";
+
 export default function Jobpost() {
   let [data,setdata]= useState({
     category:"Job",

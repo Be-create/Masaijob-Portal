@@ -6,7 +6,7 @@ import MenuIcon from "@mui/material/Menu"
 export const Navbar=()=>{
     return(
 <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor:"transparent",color:"blue"}}>
         <Toolbar>
           <IconButton
             size="large"

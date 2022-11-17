@@ -7,13 +7,13 @@ import { Navbar } from './navbar'
 
 export const Adminpage = ()=>{
     return(
-        <>
+        <div >
         <Navbar/>
         <Routes>
             <Route path="/formpage" element={<Jobpost/>} />
             <Route path="/jobs" element={<Adminjoblisting/>} />
         </Routes>
         
-        </>
+        </div>
     )
 }

@@ -28,7 +28,7 @@ export  function Userjoblisting() {
         .then((res)=> res.json())
         .then((res)=>{console.log(res.data)
         setdata(res.data)
-        let temp = data.slice(0,20)
+        let temp = (res.data).slice(0,20)
         setshowdata(temp)
           console.log(temp)
         })
@@ -47,7 +47,7 @@ useEffect(()=>{
           console.log(temp1)
 },[page])
 
-  return showdata === [] ? <h1>Loading</h1> :(
+  return showdata[0] === null ? <h1>Loading</h1> : 
     <div style={{ padding:"30px"}}>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
@@ -91,5 +91,5 @@ useEffect(()=>{
         setpage(page)
     }}></Pagination>
     </div>
-  );
+  
 }

@@ -1,3 +1,13 @@
 *{
     margin: 0;
 }
+.Jobpost{
+    
+    background-image: url("./assets/background.jpg");
+    background-attachment:fixed;
+    background-position:center;
+    background-size: cover;
+    height: 90vh;
+    position:sticky;
+
+}
