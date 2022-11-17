@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 export default function Filter() {
@@ -20,7 +21,7 @@ export default function Filter() {
         </AccordionSummary>
         <AccordionDetails>
         <FormGroup>
-  <FormControlLabel control={<Checkbox defaultChecked />} label="Salary" />
+  <FormControlLabel control={<Checkbox  />} label="Salary" checked   />
   <FormControlLabel  control={<Checkbox defaultChecked />} label="Latest" />
   <FormControlLabel control={<Checkbox defaultChecked />} label="Remote" />
   <FormControlLabel  control={<Checkbox defaultChecked />} label="Contract" />
