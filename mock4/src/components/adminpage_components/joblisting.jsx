@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Filter from './Filter';
 import CircularProgress from '@mui/material/CircularProgress';
+import PopoverPopupState from './updatePop';
+import BasicPopover from './updatePop';
 export  function Adminjoblisting() {
     let [data,setdata]= useState([])
     let [page,setpage]=useState(1)
@@ -81,8 +83,11 @@ useEffect(()=>{
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <Button variant="contained" sx={{margin:"10px"}} color="primary">DELETE 
+        </Button>
+        <Button size="small">
+          <BasicPopover/>
+        </Button>
       </CardActions>
     </Card>
   </Grid>

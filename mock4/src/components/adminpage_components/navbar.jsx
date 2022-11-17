@@ -2,6 +2,7 @@ import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/mater
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MenuIcon from "@mui/material/Menu"
+import Searchbar from './Searchbar'
 
 export const Navbar=()=>{
     return(
@@ -22,6 +23,8 @@ ADMIN
           </Typography>
         </Toolbar>
       </AppBar>
+
+      <Searchbar/>
     </Box>
     )
 }
