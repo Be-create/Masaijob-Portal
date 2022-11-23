@@ -23,8 +23,6 @@ export default function Filter() {
         <FormGroup>
   <FormControlLabel control={<Checkbox  />} label="Salary" checked   />
   <FormControlLabel  control={<Checkbox defaultChecked />} label="Latest" />
-  <FormControlLabel control={<Checkbox defaultChecked />} label="Remote" />
-  <FormControlLabel  control={<Checkbox defaultChecked />} label="Contract" />
 </FormGroup>
         </AccordionDetails>
       </Accordion>
