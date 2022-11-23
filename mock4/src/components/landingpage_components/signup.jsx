@@ -17,7 +17,7 @@ export const Signup = ()=>{
             email,
             password
         }
-        fetch(`http://localhost:8080/api/register`,{
+        fetch(`https://masaijobserver1.onrender.com/api/register`,{
             method: "POST",
             body: JSON.stringify(data),
             headers:{

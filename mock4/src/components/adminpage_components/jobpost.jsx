@@ -24,7 +24,7 @@ export default function Jobpost() {
   const handlesubmit = ()=>{
     console.log(data)
     try {
-      fetch(`http://localhost:8080/api/postjob`,{
+      fetch(`https://masaijobserver1.onrender.com/api/postjob`,{
         method: "POST",
         body: JSON.stringify(data),
         headers:{
