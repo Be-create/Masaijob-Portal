@@ -12,42 +12,21 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Filter from '../adminpage_components/Filter';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector } from 'react-redux';
 export  function Userjoblisting() {
-    let [data,setdata]= useState([])
+  let data = useSelector((state)=>state.jobs)
+    console.log(data)
+   
     let [page,setpage]=useState(1)
     let [showdata,setshowdata]=useState([])
     let count=10
- let navigate = useNavigate()
- const cookies = new Cookies();
-    useEffect(()=> {
-    let token = cookies.get('token')
-    if(token){
-        fetch(` https://masaijobserver1.onrender.com/api/job`,{
-          headers: {
-            Authorization: `${token}`
-          }
-        })
-        .then((res)=> res.json())
-        .then((res)=>{console.log(res.data)
-        setdata(res.data)
-        let temp = (res.data).slice(0,20)
-        setshowdata(temp)
-          console.log(temp)
-        })
-        .catch((err)=> console.log(err))
-    
-    }
-    else{
-      navigate("/register")
-    }
-},[])
 useEffect(()=>{
   let start = page*20
   let end = start+20
   let temp1 = data.slice(start,end)
         setshowdata(temp1)
           console.log(temp1)
-},[page])
+},[page,data])
 
   return showdata[0] == undefined ?  <Box sx={{ display: 'flex',width:"100vw" }}>
   <CircularProgress sx={{ margin:"auto"}} />
