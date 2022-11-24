@@ -7,8 +7,15 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 export default function Filter() {
+  let data = useSelector((state)=>state.jobs)
+const sortbysalary=()=>{
+
+}
+
+
   return (
     <div style={{ margin:"20px"}}>
       <Accordion>
@@ -21,8 +28,10 @@ export default function Filter() {
         </AccordionSummary>
         <AccordionDetails>
         <FormGroup>
-  <FormControlLabel control={<Checkbox  />} label="Salary" checked   />
-  <FormControlLabel  control={<Checkbox defaultChecked />} label="Latest" />
+  <FormControlLabel control={<Checkbox />} label="Salary"  onChange={(e)=>{
+    console.log(e.target.checked)
+  }}  />
+  <FormControlLabel  control={<Checkbox  />} label="Latest" />
 </FormGroup>
         </AccordionDetails>
       </Accordion>

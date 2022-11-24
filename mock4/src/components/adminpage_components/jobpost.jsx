@@ -11,14 +11,18 @@ import { useState } from "react";
 
 export default function Jobpost() {
   let [data,setdata]= useState({
-    category:"Job",
+    category:"",
+
+    salary:"",
 
     companyname : "",
     
     role:"",
     
   
-    location:""
+    location:"",
+
+    time :   new Date().getDate()+"/"+ new Date().getMonth()+"/"+new Date().getFullYear(),
 
   })
   const handlesubmit = ()=>{
@@ -49,7 +53,19 @@ export default function Jobpost() {
           variant="outlined"
           value={data.category}
           onChange={(e)=> {setdata({...data,category: e.target.value })
-                               console.log(data)
+                              
+        }
+          }
+        />
+        <br />
+        <TextField
+          style={{ width: "50%", margin: "5px" }}
+          type="Number"
+          label="Salary"
+          variant="outlined"
+          value={data.salary}
+          onChange={(e)=> {setdata({...data,salary: e.target.value })
+                               
         }
           }
         />
@@ -60,7 +76,8 @@ export default function Jobpost() {
           label="Company-name"
           variant="outlined"
           value={data.companyname}
-          onChange={(e)=> setdata({...data,companyname: e.target.value})}
+          onChange={(e)=> setdata({...data,companyname: e.target.value})
+        }
         />
         <br />
         <TextField
@@ -81,7 +98,7 @@ export default function Jobpost() {
           onChange={(e)=> setdata({...data,location: e.target.value})}
         />
         <br />
-        <Button variant="contained" color="primary"  onClick={handlesubmit}  >
+        <Button variant="contained" color="primary"  onClick={handlesubmit} >
           Post
         </Button>
       </form>
