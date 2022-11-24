@@ -14,80 +14,116 @@ import Filter from './Filter';
 import CircularProgress from '@mui/material/CircularProgress';
 import PopoverPopupState from './updatePop';
 import BasicPopover from './updatePop';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UpdateState } from '../redux/actiontype';
 import { updatestate } from '../redux/action';
-export  function Adminjoblisting() {
-    // {let [data,setdata]= useState([])}
-    let data = useSelector((state)=>state.jobs)
-    console.log(data)
-    let [page,setpage]=useState(1)
-    let [showdata,setshowdata]=useState([])
-    let [count,setcount]=useState(0)
- let navigate = useNavigate()
+export function Adminjoblisting() {
+  // {let [data,setdata]= useState([])}
+  let data = useSelector((state) => state.jobs)
+  console.log(data)
+  let [page, setpage] = useState(1)
+  let [showdata, setshowdata] = useState([])
+  let [count, setcount] = useState(0)
+  let navigate = useNavigate()
+let cookies = new Cookies()
+  //getdata and apply pagination
  
-useEffect(()=>{
-  let temp = Math.round(data.length/5)
-  setcount(temp)
-  let start = page*5
-  let end = start+5
-  let temp1 = data.slice(start,end)
-        setshowdata(temp1)
-         // console.log(temp1)
-},[page,data])
+  const getdata = ()=>{
 
-  return showdata[0] == undefined ?  <Box sx={{ display: 'flex',width:"100vw" }}>
-  <CircularProgress sx={{ margin:"auto"}} />
-</Box>:(
-    <div style={{ padding:"30px", display:"flex"}}>
-     <Filter/>
-        <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+  }
+ 
+ 
+  useEffect(() => {
+    if(data.length<=5) setshowdata(data);
+    else{
+      
+      let temp = Math.ceil(data.length / 5);
+      console.log(temp)
+    setcount(temp);
+    let start = (page-1) * 5;
+   let end = start+5;
+   if(data[end-1]===null){
+    end = data.length
+   }
+    let temp1 = data.slice(start, end)
+    setshowdata(temp1)
+  }
+   
+    // console.log(temp1)
+  }, [page, data])
+
+
+//Delete job post
+
+const DeleteJob =(id)=>{
+  console.log(id)
+  let token = cookies.get('token')
+  try {
+    fetch(`http://localhost:8080/api/deletejob/?id=${id}`,{
+      method: "Delete",
+      headers:{
+          "Authorization": `${token}`
+      }
+  })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
+  return showdata[0] == undefined ? <Box sx={{ display: 'flex', width: "100vw" }}>
+    <CircularProgress sx={{ margin: "auto" }} />
+  </Box> : (
+    <div style={{ padding: "30px", display: "flex" }}>
+      <Filter />
+      <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
-           showdata.map((ele)=>
+          showdata.map((ele) =>
             <Grid key={ele._id} item xs={4} sm={4} md={4} >
-    <Card >
-      <CardMedia
-        component="img"
-        height="50"
-        width="50"
-        src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d9.svg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-        { ele.companyname}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {ele.role}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {ele.location}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-         Date posted  {ele.time}
-        </Typography>
-        <Typography gutterBottom variant="h5" component="div">
-        { ele.salary} LPA
-        </Typography>
-      </CardContent>
-      <CardActions>
-      <Button variant="contained" sx={{margin:"10px"}} color="primary">DELETE 
-        </Button>
-        <Button size="small">
-          <BasicPopover/>
-        </Button>
-      </CardActions>
-    </Card>
-  </Grid>
-            
-            
-            )
-        }
-        </Grid>
+              <Card >
+                <CardMedia
+                  component="img"
+                  height="50"
+                  width="50"
+                  src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d9.svg"
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {ele.companyname}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {ele.role}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {ele.location}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Date posted  {ele.time}
+                  </Typography>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {ele.salary} LPA
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button variant="contained" sx={{ margin: "10px" }} color="primary" onClick={()=>DeleteJob(ele._id)}>DELETE
+                  </Button>
+                  <Button size="small">
+                    <BasicPopover />
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
 
-        <Pagination count={count} defaultPage={1} onChange={(e,page)=>{
-        setpage(page)
-    }}></Pagination></div>
+
+          )
+        }
+      </Grid>
+
+        <Pagination count={count} defaultPage={1} onChange={(e, page) => {
+          setpage(page)
+        }}></Pagination></div>
     </div>
   );
 }
