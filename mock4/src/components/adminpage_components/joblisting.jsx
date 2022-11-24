@@ -56,13 +56,16 @@ useEffect(()=>{
         { ele.companyname}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {ele.position}
+          {ele.role}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {ele.location}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {ele.contact}
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+        { ele.salary} LPA
         </Typography>
       </CardContent>
       <CardActions>

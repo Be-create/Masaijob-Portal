@@ -7,11 +7,20 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updatestate } from '../redux/action';
 
 export default function Filter() {
+  let dispatch = useDispatch()
   let data = useSelector((state)=>state.jobs)
 const sortbysalary=()=>{
+let temp = data.sort((a,b)=>{
+
+  return(b.salary-a.salary)
+})
+
+console.log(temp)
+dispatch(updatestate(temp))
 
 }
 
@@ -28,9 +37,7 @@ const sortbysalary=()=>{
         </AccordionSummary>
         <AccordionDetails>
         <FormGroup>
-  <FormControlLabel control={<Checkbox />} label="Salary"  onChange={(e)=>{
-    console.log(e.target.checked)
-  }}  />
+  <FormControlLabel control={<Checkbox />} label="Salary"  onChange={sortbysalary}  />
   <FormControlLabel  control={<Checkbox  />} label="Latest" />
 </FormGroup>
         </AccordionDetails>
