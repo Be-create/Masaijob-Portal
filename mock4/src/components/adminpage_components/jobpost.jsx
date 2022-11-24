@@ -8,8 +8,9 @@ import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import { Navbar } from "./navbar";
 import { useState } from "react";
-
+import Cookies from 'universal-cookie';
 export default function Jobpost() {
+  const cookies = new Cookies();
   let [data,setdata]= useState({
     category:"",
 
@@ -22,17 +23,20 @@ export default function Jobpost() {
   
     location:"",
 
-    time :   new Date().getDate()+"/"+ new Date().getMonth()+"/"+new Date().getFullYear(),
+    time :   new Date().getDate()+"."+ new Date().getMonth()+"."+new Date().getFullYear(),
 
   })
   const handlesubmit = ()=>{
+    let token = cookies.get('token')
     console.log(data)
+
     try {
-      fetch(`https://masaijobserver1.onrender.com/api/postjob`,{
+      fetch(`http://localhost:8080/api/postjob`,{
         method: "POST",
         body: JSON.stringify(data),
         headers:{
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `${token}`
         }
     })
     } catch (error) {

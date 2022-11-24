@@ -23,12 +23,14 @@ export  function Adminjoblisting() {
     console.log(data)
     let [page,setpage]=useState(1)
     let [showdata,setshowdata]=useState([])
-    let count=10
+    let [count,setcount]=useState(0)
  let navigate = useNavigate()
  
 useEffect(()=>{
-  let start = page*20
-  let end = start+20
+  let temp = Math.round(data.length/5)
+  setcount(temp)
+  let start = page*5
+  let end = start+5
   let temp1 = data.slice(start,end)
         setshowdata(temp1)
          // console.log(temp1)
@@ -62,7 +64,7 @@ useEffect(()=>{
           {ele.location}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {ele.contact}
+         Date posted  {ele.time}
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
         { ele.salary} LPA
@@ -83,7 +85,7 @@ useEffect(()=>{
         }
         </Grid>
 
-        <Pagination count={10} defaultPage={1} onChange={(e,page)=>{
+        <Pagination count={count} defaultPage={1} onChange={(e,page)=>{
         setpage(page)
     }}></Pagination></div>
     </div>

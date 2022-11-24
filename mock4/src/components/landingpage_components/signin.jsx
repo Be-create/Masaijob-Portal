@@ -23,7 +23,7 @@ export const Signin = ()=>{
             password
         }
         try {
-          fetch(` https://masaijobserver1.onrender.com/api/login`,{
+          fetch(` http://localhost:8080/api/login`,{
             method: "POST",
             body: JSON.stringify(data),
             headers:{
