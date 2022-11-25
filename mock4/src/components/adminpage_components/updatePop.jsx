@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Updateform from './updateform';
 
-export default function BasicPopover() {
+export default function BasicPopover({buttonid}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -33,7 +33,7 @@ export default function BasicPopover() {
           horizontal: 'left',
         }}
       >
-        <Typography sx={{ p: 2 }}><Updateform/></Typography>
+        <Typography sx={{ p: 2 }}><Updateform id={buttonid}/></Typography>
       </Popover>
     </div>
   );

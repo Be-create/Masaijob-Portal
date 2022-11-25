@@ -109,7 +109,7 @@ let temp =  data.filter((key)=>key._id!==id)
                   <Button variant="contained" sx={{ margin: "10px" }} color="primary" onClick={()=>DeleteJob(ele._id)}>DELETE
                   </Button>
                   <Button size="small">
-                    <BasicPopover />
+                    <BasicPopover buttonid={ele._id} />
                   </Button>
                 </CardActions>
               </Card>
