@@ -6,8 +6,25 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import { useDispatch, useSelector } from 'react-redux';
+import { updatestate } from '../redux/action';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 export default function Searchbar() {
+  let [input,setinput]= React.useState("")
+  let data = useSelector((state)=> state.jobs)
+  let dispatch = useDispatch()
+function Search(){
+let temp = data.filter((key)=> key.companyname === input)
+if(temp.length!==0) dispatch(updatestate(temp))
+else{
+ return <Alert variant="filled" severity="error">
+ This is an error alert — check it out!
+</Alert>
+}
+}
+
   return (
     <Paper
       component="form"
@@ -20,8 +37,11 @@ export default function Searchbar() {
         sx={{ ml: 1, flex: 1 ,borderRadius:"20%" }}
         placeholder="Search something ..."
         inputProps={{ 'aria-label': 'search google maps' }}
+        onChange={(e)=>{
+          setinput(e.target.value)
+        }}
       />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={Search}>
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />

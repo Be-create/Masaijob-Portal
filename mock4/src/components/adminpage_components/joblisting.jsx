@@ -20,18 +20,14 @@ import { updatestate } from '../redux/action';
 export function Adminjoblisting() {
   // {let [data,setdata]= useState([])}
   let data = useSelector((state) => state.jobs)
+  let dispatch = useDispatch()
   console.log(data)
   let [page, setpage] = useState(1)
   let [showdata, setshowdata] = useState([])
   let [count, setcount] = useState(0)
   let navigate = useNavigate()
 let cookies = new Cookies()
-  //getdata and apply pagination
- 
-  const getdata = ()=>{
-
-  }
- 
+  //apply pagination
  
   useEffect(() => {
     if(data.length<=5) setshowdata(data);
@@ -56,7 +52,10 @@ let cookies = new Cookies()
 //Delete job post
 
 const DeleteJob =(id)=>{
-  console.log(id)
+  //console.log(id)
+let temp =  data.filter((key)=>key._id!==id)
+ dispatch(updatestate(temp))
+
   let token = cookies.get('token')
   try {
     fetch(`http://localhost:8080/api/deletejob/?id=${id}`,{
@@ -80,8 +79,8 @@ const DeleteJob =(id)=>{
       <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
           showdata.map((ele) =>
-            <Grid key={ele._id} item xs={4} sm={4} md={4} >
-              <Card >
+            <Grid key={ele._id} >
+              <Card raised sx={{ margin:"20px"}}>
                 <CardMedia
                   component="img"
                   height="50"

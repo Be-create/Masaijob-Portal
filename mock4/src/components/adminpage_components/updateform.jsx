@@ -12,7 +12,7 @@ export default function Updateform() {
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
         <InputLabel htmlFor="input-with-icon-adornment">
-          With a start adornment
+          Company Name
         </InputLabel>
         <Input
           id="input-with-icon-adornment"
@@ -23,21 +23,22 @@ export default function Updateform() {
           }
         />
       </FormControl>
-      <TextField
-        id="input-with-icon-textfield"
-        label="TextField"
-        InputProps={{
-          startAdornment: (
+      <FormControl variant="standard">
+        <InputLabel htmlFor="input-with-icon-adornment">
+          Role
+        </InputLabel>
+        <Input
+          id="input-with-icon-adornment"
+          startAdornment={
             <InputAdornment position="start">
               <AccountCircle />
             </InputAdornment>
-          ),
-        }}
-        variant="standard"
-      />
+          }
+        />
+      </FormControl>
       <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
         <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-        <TextField id="input-with-sx" label="With sx" variant="standard" />
+        <TextField id="input-with-sx" label="Salary" variant="standard" />
       </Box>
     </Box>
   );
