@@ -12,21 +12,21 @@ import { updatestate } from '../redux/action';
 
 export default function Filter() {
   let dispatch = useDispatch()
-  let data = useSelector((state)=>state.jobs)
-const sortbysalary=()=>{
-let temp = data.sort((a,b)=>{
+  let data = useSelector((state) => state.jobs)
+  const sortbysalary = () => {
+    let temp = data.sort((a, b) => {
 
-  return(b.salary-a.salary)
-})
+      return (b.salary - a.salary)
+    })
 
-console.log(temp)
-dispatch(updatestate(temp))
+   // console.log(temp)
+    dispatch(updatestate(temp))
 
-}
-
+  }
+  
 
   return (
-    <div style={{ margin:"20px"}}>
+    <div style={{ margin: "20px" }}>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -36,27 +36,10 @@ dispatch(updatestate(temp))
           <Typography>Sort</Typography>
         </AccordionSummary>
         <AccordionDetails>
-        <FormGroup>
-  <FormControlLabel control={<Checkbox />} label="Salary"  onChange={sortbysalary}  />
-  <FormControlLabel  control={<Checkbox  />} label="Latest" />
-</FormGroup>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Employment</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-        <FormGroup>
-  <FormControlLabel control={<Checkbox defaultChecked />} label="Full-Time" />
-  <FormControlLabel  control={<Checkbox defaultChecked />} label="Part-Time" />
-  <FormControlLabel control={<Checkbox defaultChecked />} label="Remote" />
-  <FormControlLabel  control={<Checkbox defaultChecked />} label="Contract" />
-</FormGroup>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox />} label="Salary" onChange={sortbysalary} />
+           
+          </FormGroup>
         </AccordionDetails>
       </Accordion>
     </div>

@@ -9,8 +9,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { Navbar } from "./navbar";
 import { useState } from "react";
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
+import { updatestate } from "../redux/action";
+import { useDispatch } from "react-redux";
 export default function Jobpost() {
   const cookies = new Cookies();
+  let navigate = useNavigate()
+  let dispatch = useDispatch()
   let [data,setdata]= useState({
     category:"",
 
@@ -38,6 +43,24 @@ export default function Jobpost() {
             "Content-Type": "application/json",
             "Authorization": `${token}`
         }
+    })
+    .then(()=>{
+      alert("Job posted Successfully")
+    })
+    .then(()=>{
+      fetch(` http://localhost:8080/api/job`,{
+          headers: {
+            Authorization: `${token}`
+          }
+        })
+        .then((res)=> res.json())
+        .then((res)=>{//console.log(res.data)
+          dispatch(updatestate(res.data))
+          //console.log(temp)
+        })
+    })
+    .then(()=>{
+      navigate("/adminpage/jobs")
     })
     } catch (error) {
       console.log(error)
