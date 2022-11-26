@@ -15,7 +15,7 @@ export  function Userpage() {
     let token = cookies.get('token')
     if(token){
         try {
-          fetch(` http://localhost:8080/api/job`,{
+          fetch(` http://localhost:8080/api/alljob`,{
           headers: {
             Authorization: `${token}`
           }
