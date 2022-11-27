@@ -26,7 +26,12 @@ navigate("/register")
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Jobs
+          <Button variant="contained" sx={{margin:"10px"}} color="primary" ><Link to="/userpage" >Jobs</Link> 
+        </Button>
+          </Typography>
+          <Typography>
+          <Button variant="contained" sx={{margin:"10px"}} color="primary" ><Link to="/userpage/applied" >Applied Jobs</Link> 
+        </Button>
           </Typography>
           <Typography>
           <Button variant="contained" sx={{margin:"10px"}} color="primary" onClick={logout} > LOGOUT

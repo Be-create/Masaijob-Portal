@@ -13,36 +13,36 @@ import Cookies from 'universal-cookie';
 import Filter from '../adminpage_components/Filter';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
-export  function Userjoblisting() {
-  let data = useSelector((state)=>state.jobs)
-    console.log(data)
+export  function Applied() {
+  
+   // console.log(data)
     const cookies = new Cookies();
     let [page,setpage]=useState(1)
     let [showdata,setshowdata]=useState([])
     let [count, setcount] = useState(0)
-    
-    
-    const apply = (id)=>{
-      console.log(id)
-      let token = cookies.get('token')
-      if(token){
-          try {
-            fetch(`http://localhost:8080/api/apply/?id=${id}`,{
-        method: "POST",
-        body: JSON.stringify(data),
-        headers:{
-            "Content-Type": "application/json",
-            "Authorization": `${token}`
+    let [data,setdata] = useState([])
+    useEffect(()=> {
+        let token = cookies.get('token')
+        
+        if(token){
+            try {
+              fetch(`http://localhost:8080/api/appliedjob`,{
+              headers: {
+                Authorization: `${token}`
+              }
+            })
+            .then((res)=> res.json())
+            
+            .then((res)=> setshowdata(res.data))
+            } catch (error) {
+              console.log(error)
+            }
+           
+        
         }
-          })
-          .then((res)=> res.json())
-          .then((res)=>console.log(res))
-          } catch (error) {
-            console.log(error)
-          }
-        }
-         
-    }
+        
+    },[])
+    
     
 useEffect(()=>{
   if(data.length<=5) setshowdata(data);
@@ -99,16 +99,8 @@ useEffect(()=>{
                     {ele.salary} LPA
                   </Typography>
       </CardContent>
-      <CardActions>
-      <Button variant="contained" sx={{margin:"10px"}} color="primary" onClick={()=>apply(ele._id)}>Apply
-        </Button>
-        <Button variant="contained" sx={{margin:"10px"}} color="primary">Bookmark
-        </Button>
-      </CardActions>
     </Card>
   </Grid>
-            
-            
             )
         }
         </Grid>

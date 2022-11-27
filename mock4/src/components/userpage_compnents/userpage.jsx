@@ -6,6 +6,7 @@ import { Navbar } from './navbar';
 import { updatestate } from '../redux/action'
 import { useDispatch } from 'react-redux'
 import Cookies from 'universal-cookie';
+import { Applied } from './appliedjob';
 export  function Userpage() {
   let navigate = useNavigate()
  const cookies = new Cookies();
@@ -39,7 +40,10 @@ export  function Userpage() {
       <>
       <Navbar/>
 
-       {<Userjoblisting/>} 
+       <Routes>
+        <Route path='/' element={<Userjoblisting/>}></Route>
+        <Route path='/applied' element={<Applied/>}></Route>
+       </Routes>
       
       </>
     )
