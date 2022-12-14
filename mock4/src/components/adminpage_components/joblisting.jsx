@@ -58,7 +58,7 @@ let temp =  data.filter((key)=>key._id!==id)
 
   let token = cookies.get('token')
   try {
-    fetch(`http://localhost:8080/api/deletejob/?id=${id}`,{
+    fetch(`https://masaijobserver1.onrender.com/api/deletejob/?id=${id}`,{
       method: "Delete",
       headers:{
           "Authorization": `${token}`

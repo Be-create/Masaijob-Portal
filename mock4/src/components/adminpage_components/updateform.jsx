@@ -32,7 +32,7 @@ export default function Updateform(id) {
     console.log(data)
 
     try {
-      fetch(`http://localhost:8080/api/updatejob/?id=${id}`,{
+      fetch(`https://masaijobserver1.onrender.com/api/updatejob/?id=${id}`,{
         method: "PUT",
         body: JSON.stringify(data),
         headers:{
@@ -41,7 +41,7 @@ export default function Updateform(id) {
         }
     })
     .then(()=>{
-      fetch(` http://localhost:8080/api/job`,{
+      fetch(` https://masaijobserver1.onrender.com/api/job`,{
           headers: {
             Authorization: `${token}`
           }

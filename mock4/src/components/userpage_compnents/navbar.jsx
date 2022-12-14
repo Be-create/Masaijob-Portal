@@ -3,6 +3,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import MenuIcon from "@mui/material/Menu"
 import Cookies from 'universal-cookie'
+import Searchbar from '../adminpage_components/Searchbar'
 
 export const Navbar=()=>{
   let cookie = new Cookies()
@@ -13,32 +14,27 @@ navigate("/register")
 }
 
     return(
-<Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Button variant="contained" sx={{margin:"10px"}} color="primary" ><Link to="/userpage" >Jobs</Link> 
-        </Button>
+<Box className='Joblist' sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ backgroundColor:"transparent",color:"blue",boxShadow:"none",justifyContent:"space-evenly"}}>
+        <Toolbar sx={{ color:"white"}}>
+          
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+           
+ADMIN
+           
           </Typography>
           <Typography>
-          <Button variant="contained" sx={{margin:"10px"}} color="primary" ><Link to="/userpage/applied" >Applied Jobs</Link> 
+          <Button  variant="contained" sx={{margin:"10px"}} color="primary" ><Link style={{ textDecoration:"none",color:"white"}} to="/userpage">Jobs</Link> 
         </Button>
-          </Typography>
-          <Typography>
-          <Button variant="contained" sx={{margin:"10px"}} color="primary" onClick={logout} > LOGOUT
+        <Button variant="contained" sx={{margin:"10px"}} color="primary"><Link style={{ textDecoration:"none",color:"white"}} to="/userpage/applied">Applied Jobs</Link> 
+        </Button>
+        <Button variant="contained" sx={{margin:"10px"}} color="primary" onClick={logout} > LOGOUT
         </Button>
           </Typography>
         </Toolbar>
       </AppBar>
+
+      <Searchbar/>
     </Box>
     )
 }

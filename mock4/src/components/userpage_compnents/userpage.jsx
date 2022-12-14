@@ -16,7 +16,7 @@ export  function Userpage() {
     let token = cookies.get('token')
     if(token){
         try {
-          fetch(` http://localhost:8080/api/alljob`,{
+          fetch(` https://masaijobserver1.onrender.com/api/alljob`,{
           headers: {
             Authorization: `${token}`
           }

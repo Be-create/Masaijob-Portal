@@ -36,7 +36,7 @@ export default function Jobpost() {
     console.log(data)
 
     try {
-      fetch(`http://localhost:8080/api/postjob`,{
+      fetch(`https://masaijobserver1.onrender.com/api/postjob`,{
         method: "POST",
         body: JSON.stringify(data),
         headers:{
@@ -48,7 +48,7 @@ export default function Jobpost() {
       alert("Job posted Successfully")
     })
     .then(()=>{
-      fetch(` http://localhost:8080/api/job`,{
+      fetch(` https://masaijobserver1.onrender.com/api/job`,{
           headers: {
             Authorization: `${token}`
           }

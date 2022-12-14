@@ -26,14 +26,14 @@ export  function Applied() {
         
         if(token){
             try {
-              fetch(`http://localhost:8080/api/appliedjob`,{
+              fetch(`https://masaijobserver1.onrender.com/api/appliedjob`,{
               headers: {
                 Authorization: `${token}`
               }
             })
             .then((res)=> res.json())
             
-            .then((res)=> setshowdata(res.data))
+            .then((res)=> setdata(res.data))
             } catch (error) {
               console.log(error)
             }

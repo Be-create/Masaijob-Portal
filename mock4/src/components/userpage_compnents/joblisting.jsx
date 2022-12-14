@@ -27,7 +27,7 @@ export  function Userjoblisting() {
       let token = cookies.get('token')
       if(token){
           try {
-            fetch(`http://localhost:8080/api/apply/?id=${id}`,{
+            fetch(`https://masaijobserver1.onrender.com/api/apply/?id=${id}`,{
         method: "POST",
         body: JSON.stringify(data),
         headers:{
