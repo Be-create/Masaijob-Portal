@@ -5,8 +5,6 @@ import {
   Button,
 } from "@mui/material";
 import * as React from "react";
-import MenuItem from "@mui/material/MenuItem";
-import { Navbar } from "./navbar";
 import { useState } from "react";
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
@@ -68,13 +66,21 @@ export default function Jobpost() {
   }
 
 
+
+
+
   return (
-    <div className="Jobpost">
+    <div className="Jobpost"
+    style={{
+      
+    }}
+    
+    >
      
 <br></br>
-      <form style={{ margin:"auto" , marginTop:"20vh"}}>
+      <form style={{ margin:"auto" ,width:"60vw",display:"flex", flexDirection:"column",  justifyContent:"center"}}>
         <TextField
-          style={{ width: "50%", margin: "5px" }}
+          style={{ width: "90%", margin: "5px" }}
           type="text"
           label="Category"
           variant="outlined"
@@ -86,7 +92,7 @@ export default function Jobpost() {
         />
         <br />
         <TextField
-          style={{ width: "50%", margin: "5px" }}
+          style={{ width: "90%", margin: "5px" }}
           type="Number"
           label="Salary"
           variant="outlined"
@@ -98,7 +104,7 @@ export default function Jobpost() {
         />
         <br />
         <TextField
-          style={{ width: "50%", margin: "5px" }}
+          style={{ width: "90%", margin: "5px" }}
           type="text"
           label="Company-name"
           variant="outlined"
@@ -108,7 +114,7 @@ export default function Jobpost() {
         />
         <br />
         <TextField
-          style={{ width: "50%", margin: "5px" }}
+          style={{ width: "90%", margin: "5px" }}
           type="text"
           label="Role"
           variant="outlined"
@@ -117,7 +123,7 @@ export default function Jobpost() {
         />
         <br />
         <TextField
-          style={{ width: "50%", margin: "5px" }}
+          style={{ width: "90%", margin: "5px" }}
           type="text"
           label="Job region"
           variant="outlined"
@@ -125,7 +131,7 @@ export default function Jobpost() {
           onChange={(e)=> setdata({...data,location: e.target.value})}
         />
         <br />
-        <Button variant="contained" color="primary"  onClick={handlesubmit} >
+        <Button variant="contained" color="primary" sx={{width:"90%"}} onClick={handlesubmit} >
           Post
         </Button>
       </form>
