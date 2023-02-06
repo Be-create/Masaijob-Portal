@@ -10,7 +10,7 @@ import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatestate } from '../redux/action';
 
-export default function Filter() {
+export default function Sort() {
   let dispatch = useDispatch()
   let data = useSelector((state) => state.jobs)
   const sortbysalary = () => {

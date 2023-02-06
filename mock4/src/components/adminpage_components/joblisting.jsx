@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { Box, Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import Filter from './Filter';
+import Sort from './Sort';
 import CircularProgress from '@mui/material/CircularProgress';
 import PopoverPopupState from './updatePop';
 import BasicPopover from './updatePop';
@@ -53,7 +53,7 @@ let cookies = new Cookies()
 
 const DeleteJob =(id)=>{
   //console.log(id)
-let temp =  data.filter((key)=>key._id!==id)
+let temp =  data.Sort((key)=>key._id!==id)
  dispatch(updatestate(temp))
 
   let token = cookies.get('token')
@@ -75,7 +75,7 @@ let temp =  data.filter((key)=>key._id!==id)
     <CircularProgress sx={{ margin: "auto" }} />
   </Box> : (
     <div style={{ padding: "30px", display: "flex" }}>
-      <Filter />
+      <Sort />
       <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
           showdata.map((ele) =>
