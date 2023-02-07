@@ -3,7 +3,8 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import MenuIcon from "@mui/material/Menu"
 import Cookies from 'universal-cookie'
-import Searchbar from '../adminpage_components/Searchbar'
+import Searchbar from '../commonComponents/Searchbar'
+
 
 export const Navbar=()=>{
   let cookie = new Cookies()

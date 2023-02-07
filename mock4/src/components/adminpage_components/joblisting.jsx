@@ -10,13 +10,14 @@ import { useEffect } from 'react';
 import { Box, Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import Sort from './Sort';
+
 import CircularProgress from '@mui/material/CircularProgress';
 import PopoverPopupState from './updatePop';
 import BasicPopover from './updatePop';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateState } from '../redux/actiontype';
 import { updatestate } from '../redux/action';
+import Sort from '../commonComponents/Sort';
 export function Adminjoblisting() {
   // {let [data,setdata]= useState([])}
   let data = useSelector((state) => state.jobs)

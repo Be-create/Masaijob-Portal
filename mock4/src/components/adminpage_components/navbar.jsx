@@ -2,8 +2,9 @@ import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/mater
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import MenuIcon from "@mui/material/Menu"
-import Searchbar from './Searchbar'
+
 import Cookies from 'universal-cookie'
+import Searchbar from '../commonComponents/Searchbar'
 
 export const Navbar=()=>{
 let cookie = new Cookies()

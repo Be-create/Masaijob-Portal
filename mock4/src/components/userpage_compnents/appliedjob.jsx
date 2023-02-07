@@ -10,9 +10,10 @@ import { useEffect } from 'react';
 import { Box, Grid, Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import Sort from '../adminpage_components/Sort';
+
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
+import Sort from '../commonComponents/Sort';
 export  function Applied() {
   
    // console.log(data)
