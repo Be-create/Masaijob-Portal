@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UpdateState } from '../redux/actiontype';
 import { updatestate } from '../redux/action';
 import Sort from '../commonComponents/Sort';
-import Filter from '../commonComponents/Filter';
+
 export function Adminjoblisting() {
   // {let [data,setdata]= useState([])}
   let data = useSelector((state) => state.jobs)
@@ -78,7 +78,7 @@ let temp =  data.Sort((key)=>key._id!==id)
   </Box> : (
     <div style={{ padding: "30px", display: "flex" }}>
       <Sort />
-      <Filter />
+      
       <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
           showdata.map((ele) =>

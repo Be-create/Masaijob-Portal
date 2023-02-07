@@ -14,7 +14,7 @@ import Cookies from 'universal-cookie';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
 import Sort from '../commonComponents/Sort';
-import Filter from '../commonComponents/Filter';
+
 export  function Userjoblisting() {
   let data = useSelector((state)=>state.jobs)
     console.log(data)
@@ -72,7 +72,7 @@ useEffect(()=>{
 </Box>:(
     <div style={{ padding:"30px", display:"flex"}}>
      <Sort/>
-     <Filter/>
+     
         <div>
           
           
