@@ -26,7 +26,7 @@ export default function Jobpost() {
   
     location:"",
 
-    time :   new Date().getDate()+"."+ new Date().getMonth()+"."+new Date().getFullYear(),
+    time :   new Date(),
 
   })
   const handlesubmit = ()=>{

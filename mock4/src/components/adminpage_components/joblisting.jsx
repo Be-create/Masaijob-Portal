@@ -73,7 +73,7 @@ let temp =  data.Sort((key)=>key._id!==id)
 
 
 
-  return showdata[0] == undefined ? <Box sx={{ display: 'flex', width: "100vw" }}>
+  return showdata[0] === undefined ? <Box sx={{ display: 'flex', width: "100vw" }}>
     <CircularProgress sx={{ margin: "auto" }} />
   </Box> : (
     <div style={{ padding: "30px", display: "flex" }}>

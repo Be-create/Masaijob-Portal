@@ -24,6 +24,12 @@ export default function Sort() {
 
   }
   
+  const sortByDate = ()=>{
+    let temp = data.sort((a,b)=>{
+      return new Date(b.time) - new Date(a.time)
+    })
+    dispatch(updatestate(temp))
+  }
 
   return (
     <div style={{ margin: "20px" }}>
@@ -37,7 +43,8 @@ export default function Sort() {
         </AccordionSummary>
         <AccordionDetails>
           <FormGroup>
-            <FormControlLabel control={<Checkbox />} label="Salary" onChange={sortbysalary} />
+            <FormControlLabel control={<Checkbox />} label="Salary" onChange={()=>sortbysalary()} />
+            <FormControlLabel control={<Checkbox />} label="Latest" onChange={()=>sortByDate()} />
            
           </FormGroup>
         </AccordionDetails>
