@@ -10,18 +10,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updatestate } from '../redux/action';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import { Button } from '@mui/material';
 
 export default function Searchbar() {
   let [input,setinput]= React.useState("")
+  let [alert,setAlert]= React.useState(false)
   let data = useSelector((state)=> state.jobs)
   let dispatch = useDispatch()
 function Search(){
 let temp = data.filter((key)=> key.companyname === input)
 if(temp.length!==0) dispatch(updatestate(temp))
 else{
- return <Alert variant="filled" severity="error">
- This is an error alert — check it out!
-</Alert>
+ setAlert(true) 
 }
 }
 
@@ -30,9 +30,7 @@ else{
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width:"80%",margin:"auto",marginTop:"20px"}}
     >
-      <IconButton sx={{ p: '10px' }} aria-label="menu">
-        <MenuIcon />
-      </IconButton>
+      
       <InputBase
         sx={{ ml: 1, flex: 1 ,borderRadius:"20%" }}
         placeholder="Search something ..."
@@ -41,10 +39,14 @@ else{
           setinput(e.target.value)
         }}
       />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={Search}>
+      <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={()=>Search()}>
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+      {alert===true && <Alert variant="filled" severity="error">
+ This is an error alert — check it out!
+ <Button onClick={()=>setAlert(false)}>Close</Button>
+</Alert>}
     </Paper>
   );
 }

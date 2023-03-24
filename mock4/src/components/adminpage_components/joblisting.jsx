@@ -55,7 +55,7 @@ let cookies = new Cookies()
 
 const DeleteJob =(id)=>{
   //console.log(id)
-let temp =  data.Sort((key)=>key._id!==id)
+let temp =  data.filter((key)=>key._id!==id)
  dispatch(updatestate(temp))
 
   let token = cookies.get('token')
@@ -75,36 +75,30 @@ let temp =  data.Sort((key)=>key._id!==id)
 
   return showdata[0] === undefined ? <Box sx={{ display: 'flex', width: "100vw" }}>
     <CircularProgress sx={{ margin: "auto" }} />
-  </Box> : (
+  </Box>  :(
     <div style={{ padding: "30px", display: "flex" }}>
       <Sort />
       
-      <div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      {showdata[0] === "NoData" ? <Card >NO Jobs</Card> :<div><Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {
           showdata.map((ele) =>
             <Grid key={ele._id} >
-              <Card raised sx={{ margin:"20px"}}>
-                <CardMedia
-                  component="img"
-                  height="50"
-                  width="50"
-                  src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f4d9.svg"
-                  alt="green iguana"
-                />
+              <Card elevation={5} sx={{ margin:"20px",backgroundColor:"#ddeaf7",border:"1px solid #0072E5"}}>
+                
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div" fontWeight="bold" color="#0072E5">
                     {ele.companyname}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" fontWeight="bold" color="#0072E5">
                     {ele.role}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" fontWeight="bold" color="#0072E5">
                     {ele.location}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" fontWeight="bold" color="#0072E5">
                     Date posted  {ele.time}
                   </Typography>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div" color="#0072E5">
                     {ele.salary} LPA
                   </Typography>
                 </CardContent>
@@ -125,7 +119,7 @@ let temp =  data.Sort((key)=>key._id!==id)
 
         <Pagination count={count} defaultPage={1} onChange={(e, page) => {
           setpage(page)
-        }}></Pagination></div>
+        }}></Pagination></div>}
     </div>
   );
 }

@@ -23,7 +23,8 @@ export const Adminpage = ()=>{
         })
         .then((res)=> res.json())
         .then((res)=>{//console.log(res.data)
-          dispatch(updatestate(res.data))
+          if(res.data.length!==0){dispatch(updatestate(res.data))}
+          else{dispatch(updatestate(["NoData"]))}
           //console.log(temp)
         })
         } catch (error) {
