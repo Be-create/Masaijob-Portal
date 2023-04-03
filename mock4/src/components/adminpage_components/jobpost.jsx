@@ -8,7 +8,7 @@ import { updatestate } from "../redux/action";
 import { useDispatch } from "react-redux";
 import Toast from "../commonComponents/Toast";
 export default function Jobpost(props) {
-  const { setToastDisplay, setToastMessage } = props;
+  const { setToastDisplay, setToastMessage, setSeverity } = props;
   const cookies = new Cookies();
   let navigate = useNavigate();
   let dispatch = useDispatch();
@@ -52,6 +52,7 @@ export default function Jobpost(props) {
               //console.log(temp)
             });
         })
+        .then(() => setSeverity("success"))
         .then(() => setToastMessage("Job Posted suceessfully"))
         .then(() => setToastDisplay(true))
         .then(() => {

@@ -15,6 +15,7 @@ export const Adminpage = () => {
   let [alert, setAlert] = React.useState(true);
   let [toastDisplay, setToastDisplay] = useState(false);
   let [toastMessage, setToastMessage] = useState("");
+  const [severity, setSeverity] = useState("success");
   // {let [data,setdata]= useState([])}
   useEffect(() => {
     let token = cookies.get("token");
@@ -51,13 +52,17 @@ export const Adminpage = () => {
       >
         <Alert
           onClose={() => setToastDisplay(false)}
-          severity="success"
+          severity={severity}
           sx={{ width: "100%" }}
         >
           {toastMessage}
         </Alert>
       </Snackbar>
-      <Navbar />
+      <Navbar
+        setToastDisplay={setToastDisplay}
+        setToastMessage={setToastMessage}
+        setSeverity={setSeverity}
+      />
       <Routes>
         <Route
           path="/formpage"
@@ -65,6 +70,7 @@ export const Adminpage = () => {
             <Jobpost
               setToastDisplay={setToastDisplay}
               setToastMessage={setToastMessage}
+              setSeverity={setSeverity}
             />
           }
         />
